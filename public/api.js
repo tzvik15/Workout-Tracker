@@ -1,6 +1,11 @@
 const API = {
   async getLastWorkout() {
-    const res = await fetch("/api/workouts");
+    let res;
+    try {
+      res = await fetch("/api/workouts");
+    } catch (err) {
+      console.log(err)
+    }
     const json = await res.json();
 
     return json[json.length - 1];
@@ -13,18 +18,19 @@ const API = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
-    console.log(res)
+
     const json = await res.json();
 
     return json;
   },
-  async createWorkout(req) {
-    console.log("frontend" + req)
+  async createWorkout(workoutData) {
+    console.log("front end 1 "+ workoutData);
     const res = await fetch("/api/workouts", {
       method: "POST",
+      body: workoutData,
       headers: { "Content-Type": "application/json" }
     });
-
+    console.log("front end 2 "+ workoutData);
     const json = await res.json();
 
     return json;
@@ -33,9 +39,7 @@ const API = {
   async getWorkoutsInRange() {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
-    
+
     return json;
   },
 };
-
-//module.exports = API;
