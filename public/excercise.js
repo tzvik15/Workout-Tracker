@@ -30,7 +30,7 @@ async function initExercise() {
 
 }
 
-// initExercise();
+ initExercise();
 
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
@@ -114,10 +114,10 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
 
-  // await API.addExercise(workoutData);
+   await API.addExercise(workoutData);
   //console.log("1: " + event);
   //console.log("2: " + JSON.stringify(workoutData));
-  await API.createWorkout(JSON.stringify(workoutData));
+  //await API.createWorkout(JSON.stringify(workoutData));
   clearInputs();
   toast.classList.add("success");
 }
